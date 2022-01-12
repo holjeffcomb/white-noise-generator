@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Player } from "tone";
+import Slider from "@mui/material/Slider";
 
 const FrameStyle = styled.div`
   margin: auto;
@@ -187,7 +188,11 @@ const SliderStyle = styled.div`
   }
 `;
 
-export default function Sound({ name, source, min, max }) {
+const IconStyle = styled.img`
+  max-width: 80px;
+`;
+
+export default function Sound({ name, source, min, max, icon }) {
   const player = new Player(source).toDestination();
   const playerRef = useRef(player);
   const [volume, setVolume] = useState(max - 5);
@@ -206,23 +211,35 @@ export default function Sound({ name, source, min, max }) {
   };
 
   const changeVolume = (event) => {
-    setVolume(event.target.value);
+    setVolume(event);
   };
 
   return (
     <FrameStyle>
       <label>{name}</label>
+      <IconStyle src={icon} alt={name} />
       <button onClick={play}>Play</button>
       <button onClick={stop}>Stop</button>
-      <SliderStyle>
+      <Slider
+        aria-label="Temperature"
+        defaultValue={volume}
+        getAriaValueText={changeVolume}
+        valueLabelDisplay="auto"
+        step={1}
+        marks
+        min={min}
+        max={max}
+      />
+      {/* <SliderStyle>
         <input
           type="range"
           value={volume}
           onChange={changeVolume}
           min={min}
           max={max}
+          icon={icon}
         />
-      </SliderStyle>
+      </SliderStyle> */}
     </FrameStyle>
   );
 }
