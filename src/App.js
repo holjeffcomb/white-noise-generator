@@ -3,6 +3,9 @@ import "./App.css";
 import Header from "./components/Header";
 import Sounds from "./components/Sounds";
 import cloud from "./assets/icons/base-cloud.svg";
+import Lottie from "lottie-react";
+
+import RainAnimation from "./assets/animations/rain-animation.json";
 
 const GlobalStyles = styled.div`
   input[type="range"] {
@@ -40,7 +43,13 @@ function App() {
     <GlobalStyles>
       <div className="App">
         <Header />
-        <ImageStyle src={cloud} alt="cloud" />
+        <Lottie
+          loop={true}
+          autoplay={true}
+          animationData={RainAnimation}
+          style={{ height: 200 }}
+        />
+        {/* <ImageStyle src={cloud} alt="cloud" /> */}
         <Sounds />
         <p>I am the app</p>
       </div>
