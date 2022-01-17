@@ -7,27 +7,28 @@ const SoundStyle = styled.div`
   display: grid;
   margin: auto;
   align: center;
-  width: 120px;
-  grid-template-columns: 5;
-  border: solid 1px black;
+  width: 50%;
+  grid-template-columns: auto auto auto auto;
 `;
 
 export default function Sounds() {
   return (
     <>
-      {soundData.map((sound, index) => {
-        return (
-          <Sound
-            name={sound.name}
-            source={sound.source}
-            min={sound.min}
-            max={sound.max}
-            key={index}
-            iconActive={sound.iconActive}
-            iconInactive={sound.iconInactive}
-          />
-        );
-      })}
+      <SoundStyle>
+        {soundData.map((sound, index) => {
+          return (
+            <Sound
+              name={sound.name}
+              source={sound.source}
+              min={sound.min}
+              max={sound.max}
+              key={index}
+              iconActive={sound.iconActive}
+              iconInactive={sound.iconInactive}
+            />
+          );
+        })}
+      </SoundStyle>
     </>
   );
 }

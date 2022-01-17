@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Player } from "tone";
 import Slider from "@mui/material/Slider";
+import Box from "@mui/material/Box";
 
 const FrameStyle = styled.div`
   margin: auto;
@@ -46,8 +47,14 @@ export default function Sound({
     setVolume(event);
   };
 
+  function preventHorizontalKeyboardNavigation(event) {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+    }
+  }
+
   return (
-    <FrameStyle>
+    <Box sx={{ height: 120, padding: 5 }}>
       <IconStyle
         type="image"
         src={isPlaying ? iconActive : iconInactive}
@@ -55,14 +62,19 @@ export default function Sound({
         onClick={isPlaying ? stop : play}
       />
       <Slider
+        sx={{
+          '& input[type="range"]': {
+            WebkitAppearance: "slider-vertical",
+          },
+        }}
+        orientation="vertical"
+        value={volume}
         aria-label="Temperature"
-        defaultValue={volume}
-        getAriaValueText={changeVolume}
-        valueLabelDisplay="auto"
-        step={1}
+        onChange={(event, value) => changeVolume(value)}
+        onKeyDown={preventHorizontalKeyboardNavigation}
         min={min}
         max={max}
       />
-    </FrameStyle>
+    </Box>
   );
 }
