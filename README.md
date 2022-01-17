@@ -1,3 +1,3 @@
 # White Nois
 
-A simple white noise generator
+A white noise generator built with React
