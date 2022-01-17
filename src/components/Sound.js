@@ -4,13 +4,6 @@ import { Player } from "tone";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 
-const FrameStyle = styled.div`
-  margin: auto;
-  max-width: 120px;
-  border: none;
-  padding: 10px;
-`;
-
 const IconStyle = styled.input`
   max-width: 120px;
 `;
@@ -47,6 +40,7 @@ export default function Sound({
     setVolume(event);
   };
 
+  // prevent arrow left/right keys from changing slider volumes
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
@@ -55,12 +49,14 @@ export default function Sound({
 
   return (
     <Box sx={{ height: 120, padding: 5 }}>
+      {/* add icon */}
       <IconStyle
         type="image"
         src={isPlaying ? iconActive : iconInactive}
         alt={name}
         onClick={isPlaying ? stop : play}
       />
+      {/* add slider */}
       <Slider
         sx={{
           '& input[type="range"]': {

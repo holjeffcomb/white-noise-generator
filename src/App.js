@@ -13,6 +13,7 @@ function App() {
       <Typography />
       <div className="App">
         <Header />
+        {/* animation */}
         <Lottie
           loop={true}
           autoplay={true}

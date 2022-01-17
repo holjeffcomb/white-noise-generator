@@ -13,22 +13,21 @@ const SoundStyle = styled.div`
 
 export default function Sounds() {
   return (
-    <>
-      <SoundStyle>
-        {soundData.map((sound, index) => {
-          return (
-            <Sound
-              name={sound.name}
-              source={sound.source}
-              min={sound.min}
-              max={sound.max}
-              key={index}
-              iconActive={sound.iconActive}
-              iconInactive={sound.iconInactive}
-            />
-          );
-        })}
-      </SoundStyle>
-    </>
+    <SoundStyle>
+      {/* map sound data to Sound components */}
+      {soundData.map((sound, index) => {
+        return (
+          <Sound
+            name={sound.name}
+            source={sound.source}
+            min={sound.min}
+            max={sound.max}
+            key={index}
+            iconActive={sound.iconActive}
+            iconInactive={sound.iconInactive}
+          />
+        );
+      })}
+    </SoundStyle>
   );
 }
